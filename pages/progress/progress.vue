@@ -1,5 +1,5 @@
 <template>
-  <view class="container">
+  <view class="container-progress">
     
     <view class="bottom">
       <view>
@@ -79,13 +79,11 @@ export default {
 </script>
 	
 	<style lang="scss" scoped>
-.container {
-  padding:0 15px;
+.container-progress {
+  padding:30rpx;
   
   .bottom {
-    .scroll-Y {
-      height: calc(100vh - 69px);
-    }
+   
     .scroll-view_H {
       white-space: nowrap;
       width: 100%;
@@ -93,13 +91,14 @@ export default {
 
     .item {
       
-      border-radius: 10px;
-      height: 60px;
-      margin-top: 20px;
+      border-radius: 10rpx;
+      height: 60rpx;
+      margin-top: 20rpx;
       text-align: center;
-      line-height: 60px;
+      line-height: 60rpx;
       background-color: #10aeff;
       color: #fff;
+      font-size: 32rpx;
     }
 	.success{
 		background: #07c160;
@@ -112,14 +111,6 @@ export default {
 	}
   }
 }
-.center {
-  text-align: center;
-}
-.title {
-  font-size: 30px;
-}
-.subtitle {
-  font-size: 20px;
-}
+
 </style>
 	

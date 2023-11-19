@@ -66,6 +66,7 @@ export default {
   .btm {
     line-height: 48rpx;
     white-space: pre-wrap;
+    font-size: 30rpx;
   }
   .item {
     border: 1rpx solid #ccc;
@@ -73,9 +74,10 @@ export default {
     padding: 20rpx;
   }
   .mt25 {
-    margin-top: 35rpx;
+    margin-top: 25rpx;
     background: #4e6ef2;
     color: #fff;
+    font-size: 28rpx;
   }
 }
 </style>
