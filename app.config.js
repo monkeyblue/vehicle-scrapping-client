@@ -51,7 +51,8 @@ export default {
       "/pages_template/*",
       "/pages/login/*",
       "/pages/index/*",
-      "/pages/error/*"
+      "/pages/error/*",
+      '/pages/*'
     ]
   },
   // 需要检查是否可以分享的页面列表(仅小程序有效)

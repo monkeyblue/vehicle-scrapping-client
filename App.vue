@@ -1,3 +1,4 @@
+
 <script>
 	import config from '@/app.config.js'
 	import { version } from './package.json'
@@ -50,6 +51,5 @@
 
 <style lang="scss">
 	/*每个页面公共css */
-	// @import "./uni_modules/vk-uview-ui/index.scss";
   @import "./common/css/app.scss";
 </style>

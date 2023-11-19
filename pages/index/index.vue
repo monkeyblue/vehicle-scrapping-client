@@ -1,9 +1,24 @@
 <template>
-	<view>
-		演示页面首页在
-		pages_template/uni-id/index/index，
-		正式开发时，请删除此页面的 init 函数中的 vk.reLaunch("/pages_template/uni-id/index/index"); 代码
-	</view>
+	<view class="container">
+    <view class="top">
+      <view class="title center">车辆注销一件事</view>
+      <view class="subtitle center">安全出行 文明交通</view>
+    </view>
+    <view class="bottom">
+      <view class="item" @click="routerPush('/pages/notice/notice')">
+        <view class="btn-text">车辆注销申请</view>
+        <view class="btn-sub">前往注销></view>
+      </view>
+      <view class="item" @click="routerPush('/pages/search/search')">
+        <view class="btn-text">我的业务</view>
+        <view class="btn-sub">点击查看></view>
+      </view>
+      <view class="item">
+        <view class="btn-text"  @click="routerPush('/pages/zombieCar/zombieCar')">僵尸车线索提供</view>
+        <view class="btn-sub">点击上传照片></view>
+      </view>
+    </view>
+  </view>
 </template>
 
 
@@ -53,11 +68,12 @@
 		methods: {
 			// 页面数据初始化函数
 			init(options){
-				vk.reLaunch("/pages_template/uni-id/index/index");
+				// vk.reLaunch("/pages_template/uni-id/index/index");
 			},
-			pageTo(path){
+			routerPush(path){
 				vk.navigateTo(path);
-			}
+			},
+			
 		},
 		// 监听器
 		watch:{
@@ -70,6 +86,49 @@
 	}
 </script>
 <style lang="scss" scoped>
-	
-	
+.container {
+	.center {
+  text-align: center;
+}
+.title {
+  font-size: 50rpx;
+}
+.subtitle {
+  font-size: 34rpx;
+}
+  display: flex;
+  flex-direction: column;
+  color: white;
+  background-color: #10aeff;
+  .top {
+    height: 20vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+  }
+  .bottom {
+    flex:1;
+    background-color: white;
+    border-radius: 50rpx 50rpx 0 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+    .item {
+      width: 80vw;
+      background: #10aeff;
+      margin-top: 6vh;
+      padding: 10rpx;
+      text-align: center;
+      border-radius: 15rpx 15rpx 15rpx 15rpx;
+      .btn-text {
+        font-size: 35rpx;
+      }
+      .btn-sub {
+        font-size: 24rpx;
+      }
+    }
+  }
+}
+
 </style>
