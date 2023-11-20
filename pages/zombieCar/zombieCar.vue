@@ -2,7 +2,10 @@
 	<view class="zombieCar">
 		
 		<u-upload
+		accept="image"
+		:previewFullImage="true"
 		:fileList="fileList"
+		@before-upload="befores"
 		@afterRead="afterRead"
 		@delete="deletePic"
 		name="1"
@@ -19,11 +22,14 @@
 			};
 		},
 		methods:{
+			befores(){
+				console.log(123)
+			},
 			deletePic(){
 
 			},
 			afterRead(){
-
+				console.log('2')
 			}
 		}
 	}

@@ -1,34 +1,19 @@
 <template>
   <view class="container">
     <view class="top">
-      <view class="uni-input-wrapper">
-        <input
-          class="uni-input"
-          placeholder="输入车牌号/身份证/手机号均可查询"
-          :value="value"
-        />
-      </view>
+      <u-sticky><u-search
+        placeholder="输入车牌号/身份证/手机号均可查询"
+        :show-action="false"
+        v-model="keyword"
+      ></u-search></u-sticky>
+      
     </view>
-    <view class="bottom">
-      <view>
-        <scroll-view
-          :scroll-top="scrollTop"
-          scroll-y="true"
-          class="scroll-Y"
-          @scrolltoupper="upper"
-          @scrolltolower="lower"
-          @scroll="scroll"
-        >
-          <view
-            @click="routerPush"
-            v-for="(item, i) in data"
-            :key="i"
-            class="item"
-            >{{ item.name }}</view
-          >
-        </scroll-view>
-      </view>
-    </view>
+    <u-list class="bottom">
+    
+      <u-list-item  v-for="(item, index) in setList(data,keyword)" :key="index">
+        <u-cell @click="routerPush(item)" :title="item.ordername" value="2022-12-01"> </u-cell>
+      </u-list-item>
+    </u-list>
   </view>
 </template>
   
@@ -37,55 +22,57 @@ var vk = uni.vk;
 export default {
   data() {
     return {
-      value: "",
+      keyword: "",
       scrollTop: 0,
       old: {
         scrollTop: 0,
       },
       data: [
-        { name: "asdasdasd" },
-        { name: "asdasdasd" },
-        { name: "asdasdasd" },
-        { name: "asdasdasd" },
-        { name: "asdasdasd" },
-        { name: "asdasdasd" },
-        { name: "asdasdasd" },
-        { name: "asdasdasd" },
-        { name: "asdasdasd" },
-        { name: "asdasdasd" },
-        { name: "asdasdasd" },
-        { name: "asdasdasd" },
-        { name: "asdasdasd" },
-        { name: "asdasdasd" },
-        { name: "asdasdasd" },
-        { name: "asdasdasd" },
+        {
+          url: "https://cdn.uviewui.com/uview/album/1.jpg",
+          ordername: "订单1",
+        },
+        {
+          url: "https://cdn.uviewui.com/uview/album/2.jpg",
+          ordername: "订单2",
+        },
+        {
+          url: "https://cdn.uviewui.com/uview/album/3.jpg",
+          ordername: "订单3",
+        },
+        {
+          url: "https://cdn.uviewui.com/uview/album/2.jpg",
+          ordername: "订单4",
+        },
+        {
+          url: "https://cdn.uviewui.com/uview/album/2.jpg",
+          ordername: "订单5",
+        },
+        {
+          url: "https://cdn.uviewui.com/uview/album/2.jpg",
+          ordername: "订单6",
+        },
+        {
+          url: "https://cdn.uviewui.com/uview/album/2.jpg",
+          ordername: "订单7",
+        },
       ],
     };
   },
+  computed: {
+    setList: () => {
+      return (list, keyword) => {
+        let data = list.filter((item) => {
+          return item.ordername.includes(keyword);
+        });
+        return data;
+      };
+    },
+  },
   methods: {
-    routerPush() {
+    routerPush(v) {
+      console.log(v)
       vk.navigateTo("/pages/progress/progress");
-    },
-    upper: function (e) {
-      console.log(e);
-    },
-    lower: function (e) {
-      console.log(e);
-    },
-    scroll: function (e) {
-      console.log(e);
-      this.old.scrollTop = e.detail.scrollTop;
-    },
-    goTop: function (e) {
-      // 解决view层不同步的问题
-      this.scrollTop = this.old.scrollTop;
-      this.$nextTick(function () {
-        this.scrollTop = 0;
-      });
-      uni.showToast({
-        icon: "none",
-        title: "纵向滚动 scrollTop 值已被修改为 0",
-      });
     },
   },
 };
@@ -93,47 +80,7 @@ export default {
   
   <style lang="scss" scoped>
 .container {
-  padding: 30rpx;
-  height: 100vh;
-  .top {
-    .uni-input-wrapper {
-      border-radius: 18rpx;
-      border: 1rpx solid #ccc;
-      padding: 10rpx 8rpx;
-      width: 100%;
-      box-sizing: border-box;
-      font-size: 25rpx;
-    }
-  }
-  .bottom {
-    margin-top: 25rpx;
-    
-    .scroll-view_H {
-      white-space: nowrap;
-      width: 100%;
-    }
-
-    .item {
-      border: 1rpx solid #ccc;
-      border-radius: 10rpx;
-      height: 60rpx;
-      margin-bottom: 20rpx;
-      text-align: center;
-      line-height: 60rpx;
-      background-color: #10aeff;
-      color: #fff;
-      font-size: 32rpx;
-    }
-  }
-  .center {
-    text-align: center;
-  }
-  .title {
-    font-size: 30rpx;
-  }
-  .subtitle {
-    font-size: 20rpx;
-  }
+  margin: 30rpx;
 }
 </style>
   
