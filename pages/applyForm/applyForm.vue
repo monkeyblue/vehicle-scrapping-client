@@ -308,7 +308,7 @@
             prop="date"
             :border-bottom="true"
           >
-            <u-input v-model="form.date" />
+            <u-input disabled disabledColor="#fff" v-model="form.date" />
           </u-form-item>
           <u-form-item label="遗失信息" prop="info" :border-bottom="true"
             ><u-input v-model="form.info"
@@ -333,7 +333,7 @@
         </u-form-item>
         <view v-if="form.isNotFoundCard">
           <u-form-item @click="setTime('carddate')" label="遗失日期" prop="carddate" :border-bottom="true"
-            ><u-input v-model="form.carddate"
+            ><u-input disabled disabledColor="#fff" v-model="form.carddate"
           /></u-form-item>
           <u-form-item label="遗失声明" prop="cardnotice" :border-bottom="true"
             ><u-input v-model="form.cardnotice"
@@ -385,7 +385,7 @@
             label="遗失声明"
             prop="dirvernotice"
             :border-bottom="true"
-            ><u-input v-model="form.dirvernotice"
+            ><u-input disabled disabledColor="#fff" v-model="form.dirvernotice"
           /></u-form-item>
         </view>
 
@@ -428,8 +428,10 @@
         </u-form-item>
         <view v-if="form.isNotFoundcheckIn">
           <u-form-item @click="setTime('checkIndate')" label="遗失日期" prop="checkIndate" :border-bottom="true"
-            ><u-input v-model="form.checkIndate"
-          /></u-form-item>
+            >
+            <u-input disabled disabledColor="#fff" v-model="form.checkIndate"
+          />
+        </u-form-item>
           <u-form-item
             label="遗失声明"
             prop="checkInnotice"
