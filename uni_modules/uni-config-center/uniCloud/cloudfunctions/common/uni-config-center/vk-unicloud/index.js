@@ -108,7 +108,7 @@ module.exports = {
 			"weixin": {
 				// 密钥列表
 				"list": [
-					{ "appid": "", "appsecret": "" },
+					{ "appid": "wxfbbbb419ff86027a", "appsecret": "e8722fba58e938d134d8400b9c5402f4" },
 					{ "appid": "", "appsecret": "" }
 				]
 			},

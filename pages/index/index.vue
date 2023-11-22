@@ -1,5 +1,5 @@
 <template>
-	<view class="container">
+  <view class="container">
     <view class="top">
       <view class="title center">车辆注销一件事</view>
       <view class="subtitle center">安全出行 文明交通</view>
@@ -14,7 +14,9 @@
         <view class="btn-sub">点击查看></view>
       </view>
       <view class="item">
-        <view class="btn-text"  @click="routerPush('/pages/zombieCar/zombieCar')">僵尸车线索提供</view>
+        <view class="btn-text" @click="routerPush('/pages/zombieCar/zombieCar')"
+          >僵尸车线索提供</view
+        >
         <view class="btn-sub">点击上传照片></view>
       </view>
     </view>
@@ -23,79 +25,108 @@
 
 
 <script>
-	var vk = uni.vk;
-	export default {
-		data() {
-			// 页面数据变量
-			return {
-				// init请求返回的数据
-				data:{
-					
-				},
-				// 表单请求数据
-				form1:{
-					
-				},
-				scrollTop:0,
-			}
-		},
-		onPageScroll(e) {
-			this.scrollTop = e.scrollTop;
-		},
-		// 监听 - 页面每次【加载时】执行(如：前进)
-		onLoad(options = {}) {
-			vk = uni.vk;
-			this.options = options;
-			this.init(options);
-		},
-		// 监听 - 页面【首次渲染完成时】执行。注意如果渲染速度快，会在页面进入动画完成前触发
-		onReady(){
-			
-		},
-		// 监听 - 页面每次【显示时】执行(如：前进和返回) (页面每次出现在屏幕上都触发，包括从下级页面点返回露出当前页面)
-		onShow() {
-			
-		},
-		// 监听 - 页面每次【隐藏时】执行(如：返回)
-		onHide() {
-			
-		},
-		// 监听 - 点击右上角转发时
-		onShareAppMessage(options) {
-			
-		},
-		// 函数
-		methods: {
-			// 页面数据初始化函数
-			init(options){
-				// vk.reLaunch("/pages_template/uni-id/index/index");
-			},
-			routerPush(path){
-				vk.navigateTo(path);
-			},
-			
-		},
-		// 监听器
-		watch:{
-			
-		},
-		// 计算属性
-		computed:{
-			
-		}
-	}
+var vk = uni.vk;
+export default {
+  data() {
+    // 页面数据变量
+    return {
+      // init请求返回的数据
+      data: {},
+      // 表单请求数据
+      form1: {},
+      scrollTop: 0,
+      code: "",
+    };
+  },
+  onPageScroll(e) {
+    this.scrollTop = e.scrollTop;
+  },
+  // 监听 - 页面每次【加载时】执行(如：前进)
+  onLoad(options = {}) {
+    vk = uni.vk;
+    this.options = options;
+    this.init(options);
+  },
+  // 监听 - 页面【首次渲染完成时】执行。注意如果渲染速度快，会在页面进入动画完成前触发
+  async onReady() {
+    // console.log(vk)
+    wx.login({
+      // 调用接口获取登录凭证（code）
+
+      success: (Result) => {
+        vk.callFunction({
+          url: "user/pub/code2SessionWeixin",
+          data: {
+            code: Result.code,
+            platform: "mp-weixin",
+            appid: "wxfbbbb419ff86027a",
+            needCache: true,
+          },
+          success:(res)=>{
+            vk.callFunction({
+              url:'user/kh/getMyUserInfo',
+              success:(res)=>{
+                console.log(res,'---userinfo')
+              }
+            })
+          }
+        });
+        // 向后台发起request.login请求,用code换取用户登录态信息openid,存储为token;
+        // this.code = Result.code;
+        // wx.setStorageSync("code", this.code);
+        // console.log(this.code);
+        
+      },
+
+      fail: (res) => {
+        console.log("获取登录凭证code失败！", res);
+      },
+    });
+    
+  },
+  // 监听 - 页面每次【显示时】执行(如：前进和返回) (页面每次出现在屏幕上都触发，包括从下级页面点返回露出当前页面)
+  onShow() {},
+  // 监听 - 页面每次【隐藏时】执行(如：返回)
+  onHide() {},
+  // 监听 - 点击右上角转发时
+  onShareAppMessage(options) {},
+  // 函数
+  methods: {
+    // 页面数据初始化函数
+    init(options) {
+      // vk.reLaunch("/pages_template/uni-id/index/index");
+    },
+    routerPush(path) {
+    //   wx.getUserProfile({
+    //   withCredentials: 'false',
+    //   lang: 'zh_CN',
+    //   timeout:10000,
+    //   success: (result)=>{
+    //     console.log(result,'==========================')
+    //   },
+    //   fail: ()=>{console.log(123)},
+    //   complete: ()=>{console.log(123)}
+    // })
+      vk.navigateTo(path);
+    },
+  },
+  // 监听器
+  watch: {},
+  // 计算属性
+  computed: {},
+};
 </script>
 <style lang="scss" scoped>
 .container {
-	.center {
-  text-align: center;
-}
-.title {
-  font-size: 50rpx;
-}
-.subtitle {
-  font-size: 34rpx;
-}
+  .center {
+    text-align: center;
+  }
+  .title {
+    font-size: 50rpx;
+  }
+  .subtitle {
+    font-size: 34rpx;
+  }
   display: flex;
   flex-direction: column;
   color: white;
@@ -107,7 +138,7 @@
     justify-content: center;
   }
   .bottom {
-    flex:1;
+    flex: 1;
     background-color: white;
     border-radius: 50rpx 50rpx 0 0;
     display: flex;
@@ -130,5 +161,4 @@
     }
   }
 }
-
 </style>

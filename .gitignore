@@ -5,6 +5,10 @@
 /coverage
 # production
 /build
+/dist
+/uni_modules
+/unpackage
+
 # misc
 .DS_Store
 .env.local
